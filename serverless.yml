@@ -7,8 +7,6 @@ package:
   exclude:
     - node_modules/**
     - .idea/**
-    - .requirements/**
-    - env/**
     - README.md
     - package.json
     - package-lock.json
@@ -68,10 +66,8 @@ provider:
 
 functions:
   fn-name:
-    handler: src.
+    handler: src.pkg.handler.fn
     package:
-      include:
-        - src/**
       # hack for serverless-python-requirements bug
       artifact:
     events:
@@ -83,21 +79,21 @@ functions:
 #    environment:
 #      variable2: value2
 
-resources:
-  Resources:
-    TodosDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Delete
-      Properties:
-        AttributeDefinitions:
-          -
-            AttributeName: id
-            AttributeType: S
-        KeySchema:
-          -
-            AttributeName: id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+#resources:
+#  Resources:
+#    TodosDynamoDbTable:
+#      Type: 'AWS::DynamoDB::Table'
+#      DeletionPolicy: Delete
+#      Properties:
+#        AttributeDefinitions:
+#          -
+#            AttributeName: id
+#            AttributeType: S
+#        KeySchema:
+#          -
+#            AttributeName: id
+#            KeyType: HASH
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#        TableName: ${self:provider.environment.DYNAMODB_TABLE}
